@@ -1,5 +1,6 @@
 package jm.task.core.jdbc;
 
+import jm.task.core.jdbc.dao.UserDaoHibernateImpl;
 import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.service.UserService;
@@ -10,10 +11,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         // реализуйте алгоритм здесь
-//        UserService userService = new UserServiceImpl(new UserDaoJDBCImpl());
-        UserService userService = new   UserServiceImpl(new UserDaoJDBCImpl("mydb", "users_JDBC",
-                false, false, false,
-                "id", "name", "lastName", "age"));
+        UserService userService = new UserServiceImpl(new UserDaoHibernateImpl());
         userService.createUsersTable();
         userService.saveUser("Maxim", "Maximovich", (byte) 23);
         userService.saveUser("Boris", "Borisovich", (byte) 24);
